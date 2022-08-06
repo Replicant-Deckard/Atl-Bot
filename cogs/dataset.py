@@ -16,7 +16,7 @@ class Dataset(commands.Cog):
 
       
     @commands.command()
-    async def dataset(self,ctx,rest=50000,*,name="data"):
+    async def dataset(self,ctx,rest=None,*,name="data"):
         async with ctx.typing():
             if ctx.author.id == 819344097247887470:
                 data = [
@@ -35,29 +35,34 @@ class Dataset(commands.Cog):
                 lastmessagecontent = ""
                 """firstmsg = await ctx.fetch_message()"""
 
+                if rest == None:
+                    numofmessages = 0
+                    async for msg in ctx.channel.history(limit=rest):
+                        numofmessages = numofmessages + 1
+                
+                else:
+                    numofmessages = rest
                 async for msg in ctx.channel.history(limit=rest, oldest_first =True): 
                 #async for msg in ctx.channel.history(limit=rest, oldest_first =True, after=firstmsg): <- If you wanna set a limit for the oldest message
+
                     cont = cont + 1
-                    """if cont > 50000:
-                        break"""
                     
-
-
+                    
                     thismessage = msg.author.id
-                    percent = (cont/rest) * 100
+                    percent = (cont/numofmessages) * 100
 
-                    if percent%1 ==0:
-                        if cont == (float(rest)*0.25):
+                    if percent%1 == 0 and numofmessages !=None:
+                        if cont == (float(numofmessages)*0.25):
                             emoji = ":waning_crescent_moon:"
-                        if cont == (float(rest)*0.5 ):
+                        if cont == (float(numofmessages)*0.5 ):
                             emoji =":last_quarter_moon:"
-                        if cont == (float(rest)*0.75 ):
+                        if cont == (float(numofmessages)*0.75 ):
                             emoji=":waning_gibbous_moon:"
-                        if cont == (float(rest)*0.9 ): 
+                        if cont == (float(numofmessages)*0.9 ): 
                             emoji=":full_moon: finalizing..."
 
                         
-                        await sent.edit(content=f"Collecting data... {percent}% {emoji} \nParsed {cont} out of {rest}. \nAppended {nummes}.")
+                        await sent.edit(content=f"Collecting data... {percent}% {emoji} \nParsed {cont} out of {numofmessages}. \nAppended {nummes}.")
 
                     content = msg.content
                     content = re.sub(r'http\S+', '', content)
@@ -68,7 +73,8 @@ class Dataset(commands.Cog):
                                     "?",
                                     "-",
                                     ".",
-                                    "$"]
+                                    "$",
+                                    "+"]
 
                     for prefix in prefixes:
                         if (content.startswith(prefix)):
@@ -77,7 +83,7 @@ class Dataset(commands.Cog):
                     if msg.author != self.client.user: 
                         if msg.author.bot == False:
                             if content != "" and content !=" ":
-                                if hascommand ==False:
+                                if hascommand == False:
                                     print(thismessage,lastmessage)
                                     if thismessage != lastmessage:
                                         line = content
