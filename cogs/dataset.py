@@ -33,8 +33,10 @@ class Dataset(commands.Cog):
                 lastmessage = 0
                 thismessagecontent = ""
                 lastmessagecontent = ""
-                firstmsg = await ctx.fetch_message(821507618853748736)
-                async for msg in ctx.channel.history(limit=rest, oldest_first =True, after=firstmsg):
+                """firstmsg = await ctx.fetch_message()"""
+
+                async for msg in ctx.channel.history(limit=rest, oldest_first =True): 
+                #async for msg in ctx.channel.history(limit=rest, oldest_first =True, after=firstmsg): <- If you wanna set a limit for the oldest message
                     cont = cont + 1
                     """if cont > 50000:
                         break"""
@@ -93,12 +95,15 @@ class Dataset(commands.Cog):
 
                 await sent.edit(content="Completed collecting data... :full_moon_with_face: Writing file... ")
 
-                with open("modern-political-discussion.txt", "w", encoding="utf-8") as outfile:
+
+                with open(ctx.channel.name +".txt", "w", encoding="utf-8") as outfile:
                 
                     for i in range(len(data)):
                         outfile.write(f"{data[i][1]} \n")
                         #outfile.write(f"{data[i][0]}: {data[i][1]} \n")
                     await sent.edit(content=f"Completed collecting data... :full_moon_with_face: Writing file... {i} out of {len(data)}")
+                    
+                await sent.edit(content=f"Completed collecting data... :full_moon_with_face: Finished writing file!")
             else:
                 await ctx.send("RESTRICTED COMMAND")
                 return
