@@ -1,0 +1,8 @@
+matrix.bin
+bot.py
+cogs/__pycache__/setup_command.cpython-310.pyc
+cogs/__pycache__/errorHandler.cpython-310.pyc
+*.pyc
+__pycache__
+cogs/__pycache__
+cogs/__pycache__/cmds.cpython-310.pyc
