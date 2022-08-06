@@ -99,29 +99,13 @@ class Cmds(commands.Cog):
             #await self.client.process_commands(message)
             return
 
-        for i in range(len(self.client.matrix)):
-            if message.channel.id == self.client.matrix[i][0]:
-                if self.client.matrix[i][2] != 0:
-                    await message.channel.delete_messages([discord.Object(id=self.client.matrix[i][2])])
-
-
-                botmessage = await message.channel.send(self.client.matrix[i][1])
-                self.client.matrix[i][2] = botmessage.id
-                pickle.dump(self.client.matrix, open("matrix.bin", "wb"))
-
         if message.author == self.client.user:
             return
 
         if self.client.shush == True:
             return
 
-        if " avery" in message.content.lower() or message.content.lower() == "avery":
-            await message.channel.send("Our lord and savior")
-            return
 
-        if "artemis" in message.content.lower():
-            await message.channel.send("Gay greek")
-            return
 
         if not "atl bot" in message.content.lower() and not "atlbot" in message.content.lower():
             if "atl" in message.content.lower():
@@ -132,44 +116,7 @@ class Cmds(commands.Cog):
                 await message.channel.send("Atl is my creator.")
                 return
     
-        if "acorn" in message.content.lower():
-            await message.channel.send("Holland is german")
-            return
 
-        if "denza" in message.content.lower():
-            await message.channel.send('I believe in Denza supremacy')
-            return
-        
-        if "alguienrrr" in message.content.lower():
-            await message.channel.send("Congratulations, you spelled Algu's name correctly")
-            return
-
-        if "cum" in message.content.lower() and message.author.id == 649995725953826825:
-            await message.channel.send ("Stfu acorn")
-            return
-
-        if "pika" in message.content.lower():
-            await message.channel.send("Pika is definitely Canadian")
-            return
-
-        if "chipbar" in message.content.lower():
-            await message.channel.send("No")
-            return
-
-        if " leto" in message.content.lower() or message.content.lower() == "leto":
-            await message.channel.send("Banned")
-            return
-
-        if "minos" in message.content.lower():
-            await message.channel.send("Minos is my friend.")
-            return
-       
-        if "phantomheller" in message.content.lower() or "phantom heller" in message.content.lower():
-            await message.channel.send("Worse than Hitler lmao")
-            return
-        
-        if "glugel" in message.content.lower():
-            await message.channel.send("paleylrost")
 
 def setup(client):
     client.add_cog(Cmds(client))
