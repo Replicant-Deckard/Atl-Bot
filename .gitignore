@@ -8,3 +8,5 @@ cogs/__pycache__
 cogs/__pycache__/cmds.cpython-310.pyc
 atlbotreplicanttoken.py
 atlbottoken.py
+cogs/huggingface.py
+venv

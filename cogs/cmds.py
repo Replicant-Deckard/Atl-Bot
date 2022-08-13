@@ -42,18 +42,6 @@ class Cmds(commands.Cog):
         await ctx.send(f'Question: "{question}"\n Answer: {random.choice(responses)}')
 
     @commands.command()
-    async def hello(self,ctx):
-        await ctx.send(f"Hello, {ctx.author.name}")
-
-    @commands.command()
-    async def shalom(self,ctx):
-        await ctx.send(f"Shalom, {ctx.author.name}")
-
-    @commands.command()
-    async def inshallah(self,ctx):
-        await ctx.send(f"Inshallah, {ctx.author.name}")
-
-    @commands.command()
     async def ping(self, ctx):
         await ctx.send(f"Pong! {round(self.client.latency * 1000)}ms")
 
