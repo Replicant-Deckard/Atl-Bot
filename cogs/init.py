@@ -20,6 +20,7 @@ class Init(commands.Cog):
         await self.client.change_presence(status=discord.Status.online, activity=activity)
 
         print("Welcome to Atl Bot. \nInitializing...")
+        print("Ready")
             
 
 
