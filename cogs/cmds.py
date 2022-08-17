@@ -3,6 +3,8 @@ import discord
 from discord.ext import commands
 import random
 import pickle
+import time
+import datetime
 
 
 
@@ -105,6 +107,22 @@ class Cmds(commands.Cog):
                 return
     
 
+@commands.command()
+async def bumpremind(self, ctx):
+    total_seconds = 7200
+ 
+    # While loop that checks if total_seconds reaches zero
+    # If not zero, decrement total time by one second
+    while total_seconds > 0:
+ 
+        # Delays the program one second
+        time.sleep(1)
+ 
+        # Reduces total time by one second
+        total_seconds -= 1
+
+    if total_seconds <= 0:
+        await ctx.channel.send(f"<@{ctx.message.author.id}> Bump!")
 
 def setup(client):
     client.add_cog(Cmds(client))
