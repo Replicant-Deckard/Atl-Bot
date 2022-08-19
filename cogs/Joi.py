@@ -1,4 +1,4 @@
-# the os module helps us access environment variables
+"""# the os module helps us access environment variables
 # i.e., our API keys
 import os
 
@@ -36,9 +36,7 @@ class Letobot(commands.Cog):
 
 
     def query(self, payload):
-        """
-        make request to the Hugging Face model API
-        """
+        #make request to the Hugging Face model API
         data = json.dumps(payload)
         response = requests.request('POST',
                                     self.api_endpoint,
@@ -74,4 +72,4 @@ class Letobot(commands.Cog):
 
 def setup(client):
     client.add_cog(Letobot(client))
-    print("Succesfully loaded letobot module")
+    print("Succesfully loaded letobot module")"""
