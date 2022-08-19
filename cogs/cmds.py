@@ -82,6 +82,10 @@ class Cmds(commands.Cog):
         if message.author == self.client.user:
             return
         
+        if message.author.id == 302050872383242240 and "Bump done!" in message.contents:
+            user = message.interaction.user
+            bumpremind(self, message, user)
+
         if (message.author.bot):
             return
 
@@ -92,8 +96,11 @@ class Cmds(commands.Cog):
         if message.author == self.client.user:
             return
 
+
         if self.client.shush == True:
             return
+        
+
 
 
 
@@ -107,10 +114,14 @@ class Cmds(commands.Cog):
                 return
     
 
+
 @commands.command()
-async def bumpremind(self, ctx):
-    total_seconds = 7200
- 
+async def bumpremind(self, message, user):
+
+    total_seconds = 2700
+    message.channel.send("")
+    
+    
     # While loop that checks if total_seconds reaches zero
     # If not zero, decrement total time by one second
     while total_seconds > 0:
@@ -120,9 +131,10 @@ async def bumpremind(self, ctx):
  
         # Reduces total time by one second
         total_seconds -= 1
+        
 
     if total_seconds <= 0:
-        await ctx.channel.send(f"<@{ctx.message.author.id}> Bump!")
+        await message.channel.send(f"<@{user.id}> Bump!")
 
 def setup(client):
     client.add_cog(Cmds(client))
